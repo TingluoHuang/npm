@@ -1,0 +1,22 @@
+name: 'NPM'
+description: 'Run NPM command'
+author: 'Dream'
+inputs: 
+  authToken:
+    description: 'The token to use for authentication with the npm registry'
+  registryUrl:
+    description: 'To specify a registry to authenticate with. Defaults to registry.npmjs.org'
+  strictSsl:
+    description: 'Specify false if your registry is insecure and uses the http protocol. Defaults to true'
+  userConfig:
+    description: 'To specify a non-default per-user configuration file. Defaults to $HOME/.npmrc'
+icon: 'hello.svg' # vector art to display in the GitHub Marketplace
+color: 'green' # optional, decorates the entry in the GitHub Marketplace
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    NPM_AUTH_TOKEN: '${{ inputs.authToken }}'
+    NPM_REGISTRY_URL: '${{ inputs.registryUrl }}'
+    NPM_STRICT_SSL: '${{ inputs.strictSsl }}'
+    NPM_CONFIG_USERCONFIG: '${{ inputs.userConfig }}'
